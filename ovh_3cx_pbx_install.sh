@@ -11,7 +11,7 @@ tgreen=$(tput setaf 2)
 tyellow=$(tput setaf 3)
 tdef=$(tput sgr0)
 MAC=$(cat /sys/class/net/eth0/address)
-RELEASE=
+RELEASE=$(lsb_release -d |cut -d "(" -f2 |cut -d")" -f1)
 PASS=easytr1dent
 echo "#####IBT OVH 3CX PBX install script#####"
 echo "Please, enter hostname to use for device monitoring - e.g davroc3cx01.ibt.uk.com"
@@ -57,9 +57,9 @@ echo "debian:$PASS" | /usr/bin/sudo chpasswd
 echo "Upgrading as needed..."
 /usr/bin/sudo /usr/bin/apt -y upgrade
 echo "Installing required tools..."
-/usr/bin/sudo /usr/bin/apt install net-tools dphys-swapfile
+/usr/bin/sudo /usr/bin/apt -y install net-tools dphys-swapfile
 echo "Installing monitoring agent..."
-/usr/bin/sudo /usr/bin/apt install zabbix-agent
+/usr/bin/sudo /usr/bin/apt -y install zabbix-agent
 echo "system updated and zabbix monitoring agent installed."
 echo "Configuring monitoring agent..."
 # edit zabbix_agentd.conf set zabbix server IP to 213.218.197.155 set hostname to $NAME
@@ -74,10 +74,11 @@ service iptables-save
 /usr/bin/sudo /usr/sbin/service zabbix-agent restart
 echo "${tgreen}Monitoring agent configured.${tdef}"
 echo "Installing 3cx PBX..."
-/usr/bin/sudo /usr/bin/apt install 3cxpbx
+/usr/bin/sudo /usr/bin/apt -y install 3cxpbx
 echo "Below is a list of the info used for this setup - ${tred}take note for job sheet/asset info.${tdef}"
 echo "${tyellow}Monitoring hostname =${tdef} $NAME"
 echo "${tyellow}Password for debian =${tdef} $PASS"
+echo "${tyellow}Debian version is =${tdef} $RELEASE
 echo "${tyellow}MAC address =${tdef} $MAC."
 echo "${tgreen}Please update helpdesk asset and ticket/job progress sheet.${tdef}"
 echo "Goodbye"
