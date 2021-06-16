@@ -12,7 +12,8 @@ tyellow=$(tput setaf 3)
 tdef=$(tput sgr0)
 MAC=$(cat /sys/class/net/eth0/address)
 RELEASE=$(lsb_release -d |cut -d "(" -f2 |cut -d")" -f1)
-PASS=easytr1dent
+REL=$(lsb_release -d)
+PASS=e4syTr1d3nt
 echo "#####IBT OVH 3CX PBX install script#####"
 echo "Please, enter hostname to use for device monitoring - e.g davroc3cx01.ibt.uk.com"
 read NAME
@@ -78,7 +79,7 @@ echo "Installing 3cx PBX..."
 echo "Below is a list of the info used for this setup - ${tred}take note for job sheet/asset info.${tdef}"
 echo "${tyellow}Monitoring hostname =${tdef} $NAME"
 echo "${tyellow}Password for debian =${tdef} $PASS"
-echo "${tyellow}Debian version is =${tdef} $RELEASE
+echo "${tyellow}Debian version is =${tdef} $REL
 echo "${tyellow}MAC address =${tdef} $MAC."
 echo "${tgreen}Please update helpdesk asset and ticket/job progress sheet.${tdef}"
 echo "Goodbye"
