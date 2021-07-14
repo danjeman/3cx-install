@@ -79,7 +79,7 @@ echo "Installing 3cx PBX..."
 echo "Below is a list of the info used for this setup - ${tred}take note for job sheet/asset info.${tdef}"
 echo "${tyellow}Monitoring hostname =${tdef} $NAME"
 echo "${tyellow}Password for debian =${tdef} $PASS"
-echo "${tyellow}Debian version is =${tdef} $REL
+echo "${tyellow}Debian version is =${tdef} $REL"
 echo "${tyellow}MAC address =${tdef} $MAC."
 echo "${tgreen}Please update helpdesk asset and ticket/job progress sheet.${tdef}"
 echo "Goodbye"
