@@ -41,6 +41,8 @@ if [ "no" == $(ask_yes_or_no "Set debian user password to IBT default?") ]
         fi
 fi
 echo "Great, continuing to update packages and install monitoring..."
+echo "Installing required tools..."
+/usr/bin/sudo /usr/bin/apt -y install net-tools dphys-swapfile gnupg2
 # Download 3cx key
 wget -O- http://downloads-global.3cx.com/downloads/3cxpbx/public.key | sudo apt-key add -
 # update sources to include 3cx repos
@@ -57,8 +59,6 @@ echo "setting user debian password..."
 echo "debian:$PASS" | /usr/bin/sudo chpasswd
 echo "Upgrading as needed..."
 /usr/bin/sudo /usr/bin/apt -y upgrade
-echo "Installing required tools..."
-/usr/bin/sudo /usr/bin/apt -y install net-tools dphys-swapfile
 echo "Installing monitoring agent..."
 /usr/bin/sudo /usr/bin/apt -y install zabbix-agent
 echo "system updated and zabbix monitoring agent installed."
