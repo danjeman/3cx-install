@@ -44,6 +44,7 @@ ehco "Set apt to use IPv4 only..."
 echo "Acquire::ForceIPv4 \"true\";" | sudo tee /etc/apt/apt.conf.d/99force-ipv4
 echo "Great, continuing to update packages and install monitoring..."
 echo "Installing required tools..."
+/usr/bin/sudo /usr/bin/apt -y update 2>&1
 /usr/bin/sudo /usr/bin/apt -y install net-tools dphys-swapfile gnupg2 sipgrep
 # Download 3cx key
 wget -O- http://downloads-global.3cx.com/downloads/3cxpbx/public.key | sudo apt-key add -
