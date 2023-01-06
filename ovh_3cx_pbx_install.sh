@@ -79,7 +79,7 @@ echo "${tgreen}Monitoring agent configured.${tdef}"
 echo "Installing 3cx PBX..."
 /usr/bin/sudo /usr/bin/apt -y install 3cxpbx
 echo "Upgrading as needed..."
-/usr/bin/sudo /usr/bin/apt -y upgrade
+/usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx=18.0.4.965
 echo "Below is a list of the info used for this setup - ${tred}take note for job sheet/asset info.${tdef}"
 echo "${tyellow}Monitoring hostname =${tdef} $NAME"
 echo "${tyellow}Password for debian =${tdef} $PASS"
