@@ -82,7 +82,7 @@ echo "Installing 3cx PBX..."
 echo "Upgrading as needed..."
 /usr/bin/sudo /usr/bin/apt clean all 2>&1
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
-/usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx=18.0.4.965
+/usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx=18.0.5.415
 /usr/bin/sudo /usr/bin/apt clean all 2>&1
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
 /usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx
