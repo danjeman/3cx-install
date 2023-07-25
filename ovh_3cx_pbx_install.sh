@@ -82,7 +82,12 @@ echo "Installing 3cx PBX..."
 echo "Upgrading as needed..."
 /usr/bin/sudo /usr/bin/apt clean all 2>&1
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
-/usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx=18.0.5.415
+# Fix missing debendency libmediainfo
+/usr/bin/wget http://security.debian.org/debian-security/pool/updates/main/libz/libzen/libzen0v5_0.4.37-1+deb10u1_amd64.deb
+/usr/bin/wget http://ftp.de.debian.org/debian/pool/main/t/tinyxml2/libtinyxml2-6a_7.0.0+dfsg-1_amd64.deb
+/usr/bin/wget http://ftp.de.debian.org/debian/pool/main/libm/libmms/libmms0_0.6.4-3_amd64.deb
+/usr/bin/wget http://ftp.de.debian.org/debian/pool/main/libm/libmediainfo/libmediainfo0v5_18.12-2_amd64.deb
+/usr/bin/dpkg -i libmms0_0.6.4-3_amd64.deb libtinyxml2-6a_7.0.0+dfsg-1_amd64.deb libzen0v5_0.4.37-1+deb10u1_amd64.deb libmediainfo0v5_18.12-2_amd64.deb
 /usr/bin/sudo /usr/bin/apt clean all 2>&1
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
 /usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx
