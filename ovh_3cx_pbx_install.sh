@@ -91,6 +91,7 @@ echo "Upgrading as needed..."
 /usr/bin/sudo /usr/bin/apt clean all 2>&1
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
 /usr/bin/sudo /usr/bin/apt -y upgrade 3cxpbx
+/usr/bin/sudo 3CXLaunchWebConfigTool
 echo "Below is a list of the info used for this setup - ${tred}take note for job sheet/asset info.${tdef}"
 echo "${tyellow}Monitoring hostname =${tdef} $NAME"
 echo "${tyellow}Password for debian =${tdef} $PASS"
