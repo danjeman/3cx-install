@@ -1,4 +1,5 @@
 #!/bin/bash
+logfile="/tmp/ovh_3cx_pbx_install.sh.$(date +%Y-%m-%d_%H:%M).log"
 function ask_yes_or_no() {
     read -p "$1 ([y]es or [N]o): "
     case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
@@ -10,7 +11,7 @@ tred=$(tput setaf 1)
 tgreen=$(tput setaf 2)
 tyellow=$(tput setaf 3)
 tdef=$(tput sgr0)
-MAC=$(cat /sys/class/net/eth0/address)
+MAC=$(cat /sys/class/net/e*/address)
 RELEASE=$(lsb_release -d |cut -d "(" -f2 |cut -d")" -f1)
 REL=$(lsb_release -d)
 PASS=$(tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c 10)
