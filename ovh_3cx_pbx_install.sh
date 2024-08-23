@@ -13,7 +13,7 @@ tdef=$(tput sgr0)
 MAC=$(cat /sys/class/net/eth0/address)
 RELEASE=$(lsb_release -d |cut -d "(" -f2 |cut -d")" -f1)
 REL=$(lsb_release -d)
-PASS=e4syTr1d3nt
+PASS=$(tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c 10)
 echo "#####IBT OVH 3CX PBX install script#####"
 echo "Please, enter hostname to use for device monitoring - e.g davroc3cx01.ibt.uk.com"
 read NAME
@@ -29,7 +29,8 @@ then
       exit 0
     fi
 fi
-if [ "no" == $(ask_yes_or_no "Set debian user password to IBT default?") ]
+echo "${tyellow}BY DEFAULT A RANDOM PASSWORD WILL BE CREATED FOR USER $USER, select no to create your own!!${tdef}"
+if [ "no" == $(ask_yes_or_no "Generate random password for $USER? - ${tred}ensure to check final output for password used and record!${tdef}") ]
     then
         echo "Please enter password."
         read PASS
