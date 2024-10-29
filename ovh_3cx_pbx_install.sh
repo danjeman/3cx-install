@@ -47,12 +47,24 @@ echo "Acquire::ForceIPv4 \"true\";" | sudo tee /etc/apt/apt.conf.d/99force-ipv4
 echo "Great, continuing to update packages and install monitoring..."
 echo "Installing required tools..."
 /usr/bin/sudo /usr/bin/apt -y update 2>&1
+/usr/bin/sudo /usr/bin/apt -y upgrade 2>&1
 /usr/bin/sudo /usr/bin/apt -y install net-tools dphys-swapfile gnupg2 sipgrep
+#Debian 10 and v18
+if [ $RELEASE == "buster" ]
+then
 # Download 3cx key
 wget -O- http://downloads-global.3cx.com/downloads/3cxpbx/public.key | sudo apt-key add -
 # update sources to include 3cx repos
-echo "deb http://downloads-global.3cx.com/downloads/debian $RELEASE main" | sudo tee /etc/apt/sources.list.d/3cxpbx.list
-echo "deb http://downloads-global.3cx.com/downloads/debian $RELEASE-testing main" | sudo tee /etc/apt/sources.list.d/3cxpbx-testing.list
+echo "deb [trusted=yes] http://downloads-global.3cx.com/downloads/debian $RELEASE main" | sudo tee /etc/apt/sources.list.d/3cxpbx.list
+echo "deb [trusted=yes] http://downloads-global.3cx.com/downloads/debian $RELEASE-testing main" | sudo tee /etc/apt/sources.list.d/3cxpbx-testing.list
+fi
+# Debian 12 and v20
+if [ $RELEASE == "bookworm" ]
+then
+wget -O- https://repo.3cx.com/key.pub | gpg --dearmor | sudo tee /usr/share/keyrings/3cx-archive-keyring.gpg > /dev/null
+echo "deb [arch=amd64 by-hash=yes signed-by=/usr/share/keyrings/3cx-archive-keyring.gpg] http://repo.3cx.com/3cx bookworm main" | tee /etc/apt/sources.list.d/3cxpbx.list
+echo "deb [arch=amd64 by-hash=yes signed-by=/usr/share/keyrings/3cx-archive-keyring.gpg] http://repo.3cx.com/3cx bookworm-testing main" | tee /etc/apt/sources.list.d/3cxpbx.list
+fi
 echo "Checking for updates..."
 if ! /usr/bin/sudo /usr/bin/apt update 2>&1 | grep -q '^[WE]:'; then
     echo "${tgreen}Update check completed.${tdef}" 
