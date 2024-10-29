@@ -42,7 +42,7 @@ if [ "no" == $(ask_yes_or_no "Generate random password for $USER? - ${tred}ensur
           exit 0
         fi
 fi
-ehco "Set apt to use IPv4 only..."
+echo "Set apt to use IPv4 only..."
 echo "Acquire::ForceIPv4 \"true\";" | sudo tee /etc/apt/apt.conf.d/99force-ipv4
 echo "Great, continuing to update packages and install monitoring..."
 echo "Installing required tools..."
