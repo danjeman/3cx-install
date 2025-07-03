@@ -10,7 +10,7 @@ fi
 NEW_PASS=$(openssl rand -base64 16)
  
 # Change the root password
-echo "root:$NEW_PASS" | chpasswd
+echo "debian:$NEW_PASS" | chpasswd
  
 # Output the new password
-echo "The new root password is: $NEW_PASS"
+echo "The new debian password is: $NEW_PASS"
